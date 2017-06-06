@@ -1,7 +1,7 @@
 //Create rover and give initial position
 
 var myRover = {
-  position: [5,5],
+  position: [9,9],
   direction: 'N'
 };
 
@@ -15,11 +15,30 @@ for (i = 1; i <= 10; i++) {
   }
 }
 
+// Ask user for instructions
+var userMove = prompt("What is your next move? f,b,r,l")
+
 // Give rover position and direction
 
 function givePosition() {
   console.log("Your rover is in cell " + myRover.position + " and is facing " + myRover.direction)
 }
+
+
+// Check walls
+
+// function checkWalls () {
+//   if (myRover.position[0] || myRover.position[1] < 1) {
+//     console.log("You hit a wall! Try another move!");
+//     givePosition();
+//   }
+//   else if (myRover.position[0] || myRover.position[1] > 10) {
+//     console.log("You hit a wall! Try another move!");
+//     givePosition();
+//   }
+//
+// }
+
 
 // Write the fuctions to move rover
 
@@ -38,6 +57,7 @@ function goForward(rover) {
       myRover.position[0]++;
       break;
   }
+  console.log("Your rover moved forward");
 }
 
 function goBackwards(rover) {
@@ -55,6 +75,7 @@ function goBackwards(rover) {
       myRover.position[0]--;
       break;
   }
+  console.log("Your rover moved backwards");
 }
 
 // Change direction of rover
@@ -73,6 +94,7 @@ function goLeft(rover) {
       myRover.direction = 'S';
       break;
   }
+  console.log("Your rover pivoted left");
 }
 
 function goRight(rover) {
@@ -90,6 +112,7 @@ function goRight(rover) {
       myRover.direction = 'N';
       break;
   }
+  console.log("Your rover pivoted right");
 }
 
 
@@ -97,41 +120,33 @@ function goRight(rover) {
 
 // Process instructions to move rover
 
-var move = prompt("What is your next move? f,b,r,l")
 
 
-  if (move == 'f') {
+  if (userMove == 'f') {
+    // checkWalls();
     goForward();
-    console.log("Your rover moved forward");
     givePosition()
   }
-  else if (move == 'b') {
+  else if (userMove == 'b') {
     goBackwards();
-    console.log("Your rover moved backwards");
     givePosition()
   }
-  else if (move == 'l') {
+  else if (userMove == 'l') {
     goLeft();
-    console.log("Your rover pivoted left");
     givePosition()
   }
-  else if (move == 'r') {
+  else if (userMove == 'r') {
     goLeft();
-    console.log("Your rover pivoted right");
     givePosition()
+  }
+  else if (userMove === null) {
+    console.log("User ended the game.");
+  }
+  else if (userMove == "") {
+    console.log("Waiting for instructions!");
+    givePosition();
   }
   else {
+    console.log("Invalid command. Enter f, b, r or l.");
     givePosition();
-    console.log("Waiting for instructions!");
   }
-
-
-// Loop the instructions
-
-// While the rover position is >=1 and <=10, prompt the user to ask the next move.
-
-
-//   console.log("New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]")
-//
-//
-// goForward(myRover);
